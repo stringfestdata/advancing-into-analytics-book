@@ -1,0 +1,1 @@
+Raw data source: [`Ecdat` package in R via *Journal of Applied Econometrics*](https://rdrr.io/cran/Ecdat/man/Housing.html)
