@@ -32,21 +32,43 @@ my_second_object
 
 my_char <- 'Hello, world'
 my_num <- 3.2
-my_other_num <- 3
 my_int <- 12L
-my_log <- F
+my_logical <- F
 
-class(my_num)
-class(my_other_num)
+
+typeof(my_char)
 typeof(my_num)
-typeof(my_other_num)
+typeof(my_int)
+typeof(my_logical)
 
 
-class(my_char)
-typeof(my_num)
+# Is my_num equal to 5.5?
+my_num == 5.5
 
-class(my_num)
-class(my_int)
-class(my_log)
+# Number of characters in my_char
+# (This is like `LEN()` in Excel)
+nchar(my_char)
 
-typeof(my_num)
+my_other_num <- 2.2
+my_num <- my_num/my_other_num
+my_num
+
+
+# Run this once
+# install.packages('tidyverse')
+
+?arrange
+arrange(mtcars, cyl, disp)
+
+library(tidyverse)
+
+arrange(mtcars, cyl, disp)
+
+
+
+
+
+install.packages('installr')
+library(installr)
+help(package='installr')
+
