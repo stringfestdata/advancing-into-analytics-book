@@ -5,7 +5,7 @@ library(readxl)
 # Data source:
 # https://www.census.gov/data/tables/time-series/demo/popest/2010s-state-total.html
 
-census <- read_xlsx("census-raw.xlsx", skip=3) %>%
+census <- read_xlsx("raw-data/census-raw.xlsx", skip=3) %>%
   # Drop unneeded columns
   select(-c("Census","Estimates Base","2016":"2019")) %>% 
   # Drop unneeded rows
@@ -25,7 +25,7 @@ head(census)
 # Data source:
 # https://19january2017snapshot.epa.gov/sites/production/files/2016-11/fy2017_proposed105_allocation_state_land_pop_data.xlsx
 
-state_land <- read_xlsx("state-land-raw.xlsx",sheet = "LandArea",skip=2) %>% 
+state_land <- read_xlsx("raw-data/state-land-raw.xlsx",sheet = "LandArea",skip=2) %>% 
   # Take only the columns we need
   select(c("State/Territory","Sq. Mi....4")) %>% 
   # Rename these columns
@@ -44,14 +44,3 @@ head(census)
 
 # Write out our data
 write_csv(census,"census.csv")
-
-# Now let's contend with the divisions info
-census_divisions <- read_csv("census-divisions-raw.csv")
-
-# Merge this
-census_full <- left_join(census, census_divisions)
-
-head(census_full)
-
-# Write to a new file
-write_csv(census_full,"census_with_divisions.csv")
