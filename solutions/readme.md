@@ -1,0 +1,1 @@
+These are the solutions to the exercises found at the end of most chapters. 

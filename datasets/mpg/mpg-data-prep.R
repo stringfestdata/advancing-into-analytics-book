@@ -1,4 +1,8 @@
-setwd("C:/Users/GeorgeM/Documents/GitHub/advancing-into-analytics-book/data/")
+
+
+library(tidyverse)
+library(writexl)
+
 mpg_raw <- read.csv("auto-mpg-raw.csv",
                     na="?")
 
@@ -19,11 +23,9 @@ mpg <- mpg %>% mutate(id = row_number()) %>%
                           `3`="Asia"))
 
 
-# Write data
-write_excel_csv(mpg,"mpg-use.csv")
+# Write data to csv
+write_excel_csv(mpg,"mpg.csv")
 
-names(mpg)
-# Truncated dataset
-mpg %>% select(weight)
-
+# Write data to Excel
+write_xlsx(mpg,"mpg.xlsx")
 

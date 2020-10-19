@@ -1,0 +1,1 @@
+[Dataset variable descriptions/source](http://math.furman.edu/~dcs/courses/math47/R/library/DAAG/html/ais.html)

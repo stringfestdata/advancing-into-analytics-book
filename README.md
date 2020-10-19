@@ -1,3 +1,5 @@
-# advancing-into-analytics-book
+# _Advancing into Analytics_
 
-Data sources
+Data sources and scripts for _Advancing into Analytics_ by George Mount
+
+
