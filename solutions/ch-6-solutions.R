@@ -12,8 +12,16 @@ d <- b - 1
 # 2d. Is d greater than 2?
 d > 2
 
-# 4. Install the psych package from CRAN,
+# 2e. What type of data is stored in d?
+str(d)
+
+# 4. Install the psych package from CRAN.
+# Installing is a one-time process to download
+# the package from CRAN.
+
 # install.packages('psych')
 
+
 # and load it into your session
+# Calling it in needs to be done each time.
 library(psych)
