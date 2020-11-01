@@ -1,0 +1,90 @@
+
+# Import packages that we need
+library(tidyverse)
+library(psych)
+
+# Read in the data, select only the columns we need
+mpg <- read_csv("datasets/mpg/mpg.csv") %>% select(mpg,weight,horsepower,origin,cylinders)
+head(mpg)
+
+# Descriptive statistics
+describe(mpg)
+
+# One-way frequency table of origin
+table(mpg$origin)
+
+# # One-way frequency table
+# mpg %>% 
+#   group_by(origin) %>% 
+#   summarise(n=n())
+
+
+# # Two-way frequency table
+# mpg %>% 
+#   group_by(origin,cylinders) %>% 
+#   summarise(n=n()) %>% 
+#   spread(cylinders,n)
+
+# Two-way frequency table
+table(mpg$origin, mpg$cylinders)
+
+
+# Descriptive statistics by group
+mpg %>% select(mpg,origin) %>% describeBy(group='origin')
+
+
+
+
+
+# Histogram
+ggplot(data=mpg,aes(x=mpg)) +
+  geom_histogram()
+
+# From R for Data Science: 
+#To facet your plot by a single variable, use facet_wrap(). The first argument of facet_wra#p() should be a formula, which you create with ~ followed by a variable name (here #"formula" is the name of a data structure in R, not a synonym for "equation"). The #variable that you pass to facet_wrap() should be discrete:
+
+
+# Box plot
+ggplot(data=mpg,aes(x=origin,y=mpg)) +
+  geom_boxplot()
+
+
+# Facet histogram
+ggplot(data=mpg,aes(x=mpg)) +
+  geom_histogram()+
+  facet_grid(~ origin)
+
+
+
+
+# Is there a difference in mileage? 
+mpg_filtered <- filter(mpg, origin=='USA'|origin=='Europe')
+
+# Dependent variable ~ independent variable
+t.test(mpg ~ origin, data=mpg_filtered)
+
+
+# Scatterplot
+ggplot(data=mpg, aes(x=weight,y=mpg)) + 
+  geom_point() + xlab("weight (pounds)") + 
+  ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage") 
+
+
+
+# Correlation -- only include continuous variables
+select(mpg, mpg:horsepower) %>% cor()
+
+
+# Fit the regression, print the summary results
+mpg_regression <- lm(mpg ~ weight, data=mpg)
+summary(mpg_regression)
+
+
+names(mpg_regression)
+
+
+# Scatterplot with fit linear regression line
+ggplot(data = mpg, aes(x = weight, y = mpg)) + 
+  geom_point() + xlab("weight (pounds)") + 
+  ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage") +
+  geom_smooth(method = lm)
