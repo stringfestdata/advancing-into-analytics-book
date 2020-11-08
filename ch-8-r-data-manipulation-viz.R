@@ -1,3 +1,4 @@
+
 library(tidyverse)
 library(readxl)
 
@@ -26,15 +27,32 @@ star <- select(star, tmathssk:totexpk)
 head(star)
 
 # Calculate total score, months of experience
-mutate(star, score_ttl = tmathssk+treadssk, months_exp = totexpk*12)
+star <- mutate(star, new_column = tmathssk + treadssk)
+head(star)
 
-# Rename tmathssk and treadssk as 
-# math_score and reading_score, respectively 
-rename(star, math_score=tmathssk, reading_score=treadssk)
+
+star <- rename(star, ttl_score = new_column)
+head(star)
+
 
 # Sort
-arrange(star, classk)
+arrange(star, classk, treadssk)
 
+
+# Sort by classk descending,
+# treadssk ascending
+arrange(star, desc(classk), treadssk)
+
+# classk == small.class
+filter(star, classk == 'small.class')
+
+
+# treadssk >= 500
+filter(star, treadssk >= 500)
+
+# small class size AND reading score
+# at least 500
+filter(star, classk == 'small.class' & treadssk >= 500)
 
 
 # Read in our data sets
