@@ -35,12 +35,25 @@ rename(star, math_score=tmathssk, reading_score=treadssk)
 # Sort
 arrange(star, classk)
 
+# Filter
+filter(star, classk == 'small.class')
+filter(star, treadssk >= 500)
+filter(star, classk == 'small.class' & treadssk >= 500)
 
 
+# Group by 
+star_grouped <- group_by(star, classk)
+head(star_grouped)
+
+# Average math score by class size
+summarize(star_grouped, avg_math = mean(tmathssk))
+
+
+?summarise
 # Read in our data sets
-star <- read_excel("star.xlsx")
-districts <- read_excel("district-names.xlsx")
+star <- read_excel("datasets/star/star.xlsx")
 head(star)
+districts <- read_excel("datasets/star/district-names.xlsx")
 head(districts)
 
 # Left outer join star on districts
@@ -49,9 +62,9 @@ left_join(star, districts)
 # Get the average reading score
 # by class type, sorted high to low 
 
-star_grouped <- group_by(star,classk)
-star_avg_reading <- summarize(star_grouped,avg_reading=mean(treadssk))
-star_avg_reading_sorted <- arrange(star_avg_reading,desc(avg_reading))
+star_grouped <- group_by(star, classk)
+star_avg_reading <- summarize(star_grouped, avg_reading = mean(treadssk))
+star_avg_reading_sorted <- arrange(star_avg_reading, desc(avg_reading))
 star_avg_reading_sorted  
 
 # Piping %>% 
@@ -63,17 +76,16 @@ star %>%
   summarise(avg_reading = mean(treadssk)) %>% 
   arrange(desc(avg_reading))
 
-
-# Piping %>% 
-# Get the average reading score 
-# for students on the free lunch program
-# by class type, sorted high to low
-
+# Average math and reading score
+# for each school district
 star %>% 
-  filter(freelunk=='yes') %>% 
-  group_by(classk) %>% 
-  summarise(avg_reading = mean(treadssk)) %>% 
-  arrange(desc(avg_reading))
+  group_by(schidkn) %>% 
+  summarise(avg_read = mean(treadssk), avg_math = mean(tmathssk)) %>% 
+  arrange(schidkn) %>% 
+  head()
+
+
+
 
 # Count plot
 ggplot(data=star,aes(x=classk))+
@@ -83,9 +95,23 @@ ggplot(data=star,aes(x=classk))+
 ggplot(data=star,aes(x=treadssk))+
   geom_histogram()
 
+
+?geom_histogram
+
+ggplot(data = star, aes(x = treadssk))+
+  geom_histogram(bins = 25, fill = 'blue')
+
+
 # Boxplot
 ggplot(data=star,aes(x=treadssk))+
   geom_boxplot()
+
+
+# "Flipped" boxplot
+ggplot(data = star, aes(y = treadssk))+
+  geom_boxplot()
+
+
 
 # Grouped boxplot
 ggplot(data=star,aes(x=classk,y=treadssk))+
