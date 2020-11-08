@@ -1,4 +1,3 @@
-
 library(tidyverse)
 library(readxl)
 
@@ -27,38 +26,34 @@ star <- select(star, tmathssk:totexpk)
 head(star)
 
 # Calculate total score, months of experience
-star <- mutate(star, new_column = tmathssk + treadssk)
-head(star)
+mutate(star, score_ttl = tmathssk+treadssk, months_exp = totexpk*12)
 
-
-star <- rename(star, ttl_score = new_column)
-head(star)
-
+# Rename tmathssk and treadssk as 
+# math_score and reading_score, respectively 
+rename(star, math_score=tmathssk, reading_score=treadssk)
 
 # Sort
-arrange(star, classk, treadssk)
+arrange(star, classk)
 
-
-# Sort by classk descending,
-# treadssk ascending
-arrange(star, desc(classk), treadssk)
-
-# classk == small.class
+# Filter
 filter(star, classk == 'small.class')
-
-
-# treadssk >= 500
 filter(star, treadssk >= 500)
-
-# small class size AND reading score
-# at least 500
 filter(star, classk == 'small.class' & treadssk >= 500)
 
 
+# Group by 
+star_grouped <- group_by(star, classk)
+head(star_grouped)
+
+# Average math score by class size
+summarize(star_grouped, avg_math = mean(tmathssk))
+
+
+?summarise
 # Read in our data sets
-star <- read_excel("star.xlsx")
-districts <- read_excel("district-names.xlsx")
+star <- read_excel("datasets/star/star.xlsx")
 head(star)
+districts <- read_excel("datasets/star/district-names.xlsx")
 head(districts)
 
 # Left outer join star on districts
@@ -67,9 +62,9 @@ left_join(star, districts)
 # Get the average reading score
 # by class type, sorted high to low 
 
-star_grouped <- group_by(star,classk)
-star_avg_reading <- summarize(star_grouped,avg_reading=mean(treadssk))
-star_avg_reading_sorted <- arrange(star_avg_reading,desc(avg_reading))
+star_grouped <- group_by(star, classk)
+star_avg_reading <- summarize(star_grouped, avg_reading = mean(treadssk))
+star_avg_reading_sorted <- arrange(star_avg_reading, desc(avg_reading))
 star_avg_reading_sorted  
 
 # Piping %>% 
@@ -81,17 +76,16 @@ star %>%
   summarise(avg_reading = mean(treadssk)) %>% 
   arrange(desc(avg_reading))
 
-
-# Piping %>% 
-# Get the average reading score 
-# for students on the free lunch program
-# by class type, sorted high to low
-
+# Average math and reading score
+# for each school district
 star %>% 
-  filter(freelunk=='yes') %>% 
-  group_by(classk) %>% 
-  summarise(avg_reading = mean(treadssk)) %>% 
-  arrange(desc(avg_reading))
+  group_by(schidkn) %>% 
+  summarise(avg_read = mean(treadssk), avg_math = mean(tmathssk)) %>% 
+  arrange(schidkn) %>% 
+  head()
+
+
+
 
 # Count plot
 ggplot(data=star,aes(x=classk))+
@@ -101,9 +95,23 @@ ggplot(data=star,aes(x=classk))+
 ggplot(data=star,aes(x=treadssk))+
   geom_histogram()
 
+
+?geom_histogram
+
+ggplot(data = star, aes(x = treadssk))+
+  geom_histogram(bins = 25, fill = 'blue')
+
+
 # Boxplot
 ggplot(data=star,aes(x=treadssk))+
   geom_boxplot()
+
+
+# "Flipped" boxplot
+ggplot(data = star, aes(y = treadssk))+
+  geom_boxplot()
+
+
 
 # Grouped boxplot
 ggplot(data=star,aes(x=classk,y=treadssk))+
