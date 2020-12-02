@@ -53,8 +53,17 @@ nchar(roster_names)
 
 # View listing of available datasets
 data()
-
+ChickWeight
 is.data.frame(iris)
+str(iris)
+
+
+
+data()
+
+?factor
+
+getwd()
 
 # install.packages('Lahman')
 # library(Lahman)
@@ -62,7 +71,11 @@ is.data.frame(iris)
 data(package = 'Lahman')
 
 
+library(readxl)
+star <- read_xlsx('datasets/star/star.xlsx')
 
+str(star)
+?str
 
 # For summary statistics
 library(psych)
