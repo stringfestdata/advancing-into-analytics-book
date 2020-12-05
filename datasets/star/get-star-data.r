@@ -2,10 +2,11 @@ library(Ecdat)
 library(dplyr)
 library(writexl)
 
-star <- Star %>% 
-  # Add an index column
-  mutate(id = row_number()) %>% 
-  # Put this at the front of the data frame
-  select(id, everything())
+# Drop ID column
+star <- select(star, -id)
 
-write_xlsx(star,"star.xlsx")
+write_xlsx(star,'star.xlsx')
+
+
+
+

@@ -4,7 +4,8 @@ library(tidyverse)
 library(psych)
 
 # Read in the data, select only the columns we need
-mpg <- read_csv("datasets/mpg/mpg.csv") %>% select(mpg,weight,horsepower,origin,cylinders)
+mpg <- read_csv("datasets/mpg/mpg.csv") %>% 
+  select(mpg,weight,horsepower,origin,cylinders)
 head(mpg)
 
 # Descriptive statistics
@@ -13,35 +14,22 @@ describe(mpg)
 # One-way frequency table of origin
 table(mpg$origin)
 
-# # One-way frequency table
-# mpg %>% 
-#   group_by(origin) %>% 
-#   summarise(n=n())
-
-
-# # Two-way frequency table
-# mpg %>% 
-#   group_by(origin,cylinders) %>% 
-#   summarise(n=n()) %>% 
-#   spread(cylinders,n)
 
 # Two-way frequency table
 table(mpg$origin, mpg$cylinders)
 
 
 # Descriptive statistics by group
-mpg %>% select(mpg,origin) %>% describeBy(group='origin')
-
-
+mpg %>% 
+  select(mpg,origin) %>% 
+  describeBy(group = 'origin')
 
 
 
 # Histogram
-ggplot(data=mpg,aes(x=mpg)) +
+ggplot(data = mpg,aes(x=mpg)) +
   geom_histogram()
 
-# From R for Data Science: 
-#To facet your plot by a single variable, use facet_wrap(). The first argument of facet_wra#p() should be a formula, which you create with ~ followed by a variable name (here #"formula" is the name of a data structure in R, not a synonym for "equation"). The #variable that you pass to facet_wrap() should be discrete:
 
 
 # Box plot
@@ -63,6 +51,8 @@ mpg_filtered <- filter(mpg, origin=='USA'|origin=='Europe')
 # Dependent variable ~ independent variable
 t.test(mpg ~ origin, data=mpg_filtered)
 
+select(mpg, mpg:horsepower) %>% 
+  cor()
 
 # Scatterplot
 ggplot(data=mpg, aes(x=weight,y=mpg)) + 
@@ -71,16 +61,9 @@ ggplot(data=mpg, aes(x=weight,y=mpg)) +
 
 
 
-# Correlation -- only include continuous variables
-select(mpg, mpg:horsepower) %>% cor()
-
-
 # Fit the regression, print the summary results
 mpg_regression <- lm(mpg ~ weight, data=mpg)
 summary(mpg_regression)
-
-
-names(mpg_regression)
 
 
 # Scatterplot with fit linear regression line

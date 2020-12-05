@@ -51,13 +51,14 @@ summarize(star_grouped, avg_math = mean(tmathssk))
 
 ?summarise
 # Read in our data sets
-star <- read_excel("datasets/star/star.xlsx")
+star <- read_excel('datasets/star/star.xlsx')
 head(star)
-districts <- read_excel("datasets/star/district-names.xlsx")
+districts <- read_csv('datasets/star/districts.csv')
 head(districts)
 
 # Left outer join star on districts
 left_join(star, districts)
+
 
 # Get the average reading score
 # by class type, sorted high to low 
@@ -96,7 +97,6 @@ ggplot(data=star,aes(x=treadssk))+
   geom_histogram()
 
 
-?geom_histogram
 
 ggplot(data = star, aes(x = treadssk))+
   geom_histogram(bins = 25, fill = 'blue')
@@ -114,7 +114,7 @@ ggplot(data = star, aes(y = treadssk))+
 
 
 # Grouped boxplot
-ggplot(data=star,aes(x=classk,y=treadssk))+
+ggplot(data = star, aes(x = classk,y = treadssk))+
   geom_boxplot()
 
 # Scatterplot
@@ -126,3 +126,6 @@ ggplot(data=star,aes(x=tmathssk,y=treadssk))+
   geom_point() + 
   xlab('Total math scaled score') + ylab('Total reading scaled score')+
   ggtitle('Relationship between total math and reading scaled scores')
+
+
+
