@@ -21,24 +21,24 @@ table(mpg$origin, mpg$cylinders)
 
 # Descriptive statistics by group
 mpg %>% 
-  select(mpg,origin) %>% 
+  select(mpg, origin) %>% 
   describeBy(group = 'origin')
 
 
 
 # Histogram
-ggplot(data = mpg,aes(x=mpg)) +
+ggplot(data = mpg,aes(x = mpg)) +
   geom_histogram()
 
 
 
 # Box plot
-ggplot(data=mpg,aes(x=origin,y=mpg)) +
+ggplot(data = mpg,aes(x = origin,y = mpg)) +
   geom_boxplot()
 
 
 # Facet histogram
-ggplot(data=mpg,aes(x=mpg)) +
+ggplot(data = mpg,aes(x = mpg)) +
   geom_histogram()+
   facet_grid(~ origin)
 
@@ -46,10 +46,10 @@ ggplot(data=mpg,aes(x=mpg)) +
 
 
 # Is there a difference in mileage? 
-mpg_filtered <- filter(mpg, origin=='USA'|origin=='Europe')
+mpg_filtered <- filter(mpg, origin == 'USA' | origin == 'Europe')
 
 # Dependent variable ~ independent variable
-t.test(mpg ~ origin, data=mpg_filtered)
+t.test(mpg ~ origin, data = mpg_filtered)
 
 select(mpg, mpg:horsepower) %>% 
   cor()
