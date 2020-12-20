@@ -2,14 +2,17 @@ library(tidyverse)
 library(readxl)
 
 star <- read_excel('datasets/star/star.xlsx') 
-star <- select(star, c('classk', 'schidkn', 'treadssk', 'tmathssk'))
+star <- select(star, c('schidkn', 'classk', 'treadssk', 'tmathssk'))
 
-# https://rstudio-conf-2020.github.io/r-for-excel/tidying.html#tidyrpivot_longer-to-reshape-from-wider-to-longer-format
+star <- mutate(star, id = row_number())
 
 star_long <- pivot_longer(data = star, 
                           cols = 'tmathssk':'treadssk',
-             names_to = 'test_type', values_to = 'score')
-star_long
+                          names_to = 'test_type', values_to = 'score')
+
+
+# https://rstudio-conf-2020.github.io/r-for-excel/tidying.html#tidyrpivot_longer-to-reshape-from-wider-to-longer-format
+
 
 # https://stackoverflow.com/questions/38088328/how-to-recode-and-reverse-code-variables-in-columns-with-dplyr
 star_long <- star_long %>%
@@ -22,9 +25,10 @@ library(dplyr)
 
 # https://github.com/tidyverse/tidyr/issues/599
 
-star_long %>% 
-  group_by(schidkn, classk) %>% 
-  mutate(row = row_number()) %>%
-  pivot_wider(names_from = 'test_type', values_from = 'score') %>% 
-  select(-row)
+
+star_wide <- pivot_wider(data = star_long, 
+                         names_from = 'test_type',
+                         values_from = 'score')
+
+star_wide
 
