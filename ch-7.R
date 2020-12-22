@@ -54,7 +54,7 @@ roster_names[c(2, 5)]
 
 roster <- data.frame(
   name = c('Jack', 'Jill', 'Billy', 'Susie', 'Johnny'),
-  height_in = c(72, 65, 68, 69, 66),
+  height = c(72, 65, 68, 69, 66),
   injured = c(FALSE, TRUE, FALSE, FALSE, TRUE))
 roster
 
@@ -67,7 +67,11 @@ is.data.frame(iris)
 
 str(iris)
 
-data(package = 'Lahman')
+data(package = 'psych')
+data('sat.act')
+str(sat.act)
+
+
 
 getwd()
 

@@ -57,11 +57,9 @@ districts <- read_csv('datasets/star/districts.csv')
 head(districts)
 
 # Left outer join star on districts
-left_join(star, districts)
+left_join(select(star, schidkn, tmathssk, treadssk), districts)
 
 
-# Get the average reading score
-# by class type, sorted high to low 
 
 star_grouped <- group_by(star, classk)
 star_avg_reading <- summarize(star_grouped, avg_reading = mean(treadssk))

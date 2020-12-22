@@ -2,7 +2,6 @@
 # Import packages that we need
 library(tidyverse)
 library(psych)
-
 # Read in the data, select only the columns we need
 mpg <- read_csv("datasets/mpg/mpg.csv") %>% 
   select(mpg,weight,horsepower,origin,cylinders)
@@ -51,13 +50,18 @@ mpg_filtered <- filter(mpg, origin == 'USA' | origin == 'Europe')
 # Dependent variable ~ independent variable
 t.test(mpg ~ origin, data = mpg_filtered)
 
+
+
 select(mpg, mpg:horsepower) %>% 
-  cor()
+  cor()  
+
+select(mpg, mpg:horsepower) %>% 
+  pairs()  
 
 # Scatterplot
-ggplot(data=mpg, aes(x=weight,y=mpg)) + 
-  geom_point() + xlab("weight (pounds)") + 
-  ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage") 
+ggplot(data=mpg, aes(x=weight,y=mpg)) +
+  geom_point() + xlab("weight (pounds)") +
+  ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage")
 
 
 

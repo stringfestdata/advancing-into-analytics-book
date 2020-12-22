@@ -1,6 +1,6 @@
-,name,height_in,injury
-0,Jack,72,False
-1,Jill,65,True
-2,Billy,68,False
-3,Susie,69,False
-4,Johnny,66,False
+name,height,injured
+Jack,72,FALSE
+Jill,65,TRUE
+Billy,68,FALSE
+Susie,69,FALSE
+Johnny,66,TRUE

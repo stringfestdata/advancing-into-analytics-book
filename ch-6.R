@@ -47,10 +47,12 @@ my_second_object
 my_char <- 'Hello, world' 
 my_other_char <- "We're able to code R!" 
 my_num <- 3
+my_other_num <- 3.21
 my_int <- 12L 
-my_logical <- F 
+my_logical <- FALSE
+my_other_logical <- F
 
-
+ 
 str(my_char)
 str(my_num)
 str(my_int)
