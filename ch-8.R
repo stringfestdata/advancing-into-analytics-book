@@ -84,7 +84,32 @@ star %>%
   head()
 
 
+# Set up 
+star_pivot <- star %>% 
+                select(c(schidkn, treadssk, tmathssk)) %>% 
+                mutate(id = row_number())
 
+
+
+star_long <- star %>% 
+                pivot_longer(cols = c(tmathssk, treadssk),
+                             values_to = 'score', names_to = 'test_type')
+
+head(star_long)
+
+
+# Rename tmathssk and treadssk as math and reading
+star_long <- star_long %>%
+  mutate(test_type = recode(test_type, 
+                            'tmathssk' = 'math', 'treadssk' = 'reading')) 
+
+distinct(star_long, test_type)
+
+star_wide <- star_long %>% 
+                pivot_wider(values_from = 'score', names_from = 'test_type') 
+
+
+head(star_wide)
 
 # Count plot
 ggplot(data=star,aes(x=classk))+
