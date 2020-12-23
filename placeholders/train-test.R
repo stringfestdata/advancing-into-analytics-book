@@ -1,8 +1,9 @@
+# https://www.gmudatamining.com/lesson-10-r-tutorial.html
+
 library(tidymodels)
 library(tidyverse)
 
 mpg <- read_csv('../datasets/mpg/mpg.csv')
-
 
 set.seed(1234)
 mpg_split <- initial_split(mpg)
@@ -15,6 +16,7 @@ lm_spec <- linear_reg()
 lm_fit <- lm_spec %>%
   fit(mpg ~ weight, data = mpg_train)
 
-lm_fit
+mpg_results <- predict(lm_fit, new_data = mpg_test) %>% 
+  bind_cols(mpg_test)
 
-glance(lm_fit)
+rsq(mpg_results, truth = mpg, estimate = .pred)
