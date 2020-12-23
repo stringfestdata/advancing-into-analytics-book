@@ -2,6 +2,9 @@
 # Import packages that we need
 library(tidyverse)
 library(psych)
+library(tidymodels)
+
+
 # Read in the data, select only the columns we need
 mpg <- read_csv("datasets/mpg/mpg.csv") %>% 
   select(mpg,weight,horsepower,origin,cylinders)
@@ -75,3 +78,26 @@ ggplot(data = mpg, aes(x = weight, y = mpg)) +
   geom_point() + xlab("weight (pounds)") + 
   ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage") +
   geom_smooth(method = lm)
+
+mpg_split <- initial_split(mpg)
+
+mpg_train <- training(mpg_split)
+mpg_test <- testing(mpg_split)
+
+dim(mpg_train)
+dim(mpg_test)
+
+# Specify what kind of model this is
+lm_spec <- linear_reg()
+
+# Fit the model to the data 
+lm_fit <- lm_spec %>%
+  fit(mpg ~ weight, data = mpg_train)
+
+mpg_pred <- lm_fit %>% 
+  predict(new_data = mpg_test) %>% 
+  rsq()
+
+rmse(mpg_pred, 
+     truth = Sales,
+     estimate = .pred)
