@@ -79,6 +79,9 @@ ggplot(data = mpg, aes(x = weight, y = mpg)) +
   ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage") +
   geom_smooth(method = lm)
 
+set.seed(1234)
+
+
 mpg_split <- initial_split(mpg)
 
 mpg_train <- training(mpg_split)
@@ -96,8 +99,8 @@ lm_fit <- lm_spec %>%
 
 mpg_pred <- lm_fit %>% 
   predict(new_data = mpg_test) %>% 
-  rsq()
+  bind_cols(mpg_test)
 
-rmse(mpg_pred, 
-     truth = Sales,
-     estimate = .pred)
+rsq(data = mpg_pred, truth = mpg, estimate = .pred)
+
+rmse(data = mpg_pred, truth = mpg, estimate = .pred)
