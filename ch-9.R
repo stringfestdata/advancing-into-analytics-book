@@ -62,14 +62,14 @@ select(mpg, mpg:horsepower) %>%
   pairs()  
 
 # Scatterplot
-ggplot(data=mpg, aes(x=weight,y=mpg)) +
+ggplot(data = mpg, aes(x = weight,y = mpg)) +
   geom_point() + xlab("weight (pounds)") +
   ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage")
 
 
 
 # Fit the regression, print the summary results
-mpg_regression <- lm(mpg ~ weight, data=mpg)
+mpg_regression <- lm(mpg ~ weight, data = mpg)
 summary(mpg_regression)
 
 
@@ -78,6 +78,8 @@ ggplot(data = mpg, aes(x = weight, y = mpg)) +
   geom_point() + xlab("weight (pounds)") + 
   ylab("mileage (mpg)") + ggtitle("Relationship between weight and mileage") +
   geom_smooth(method = lm)
+
+set.seed(1234)
 
 mpg_split <- initial_split(mpg)
 
