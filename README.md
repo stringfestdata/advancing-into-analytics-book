@@ -2,4 +2,6 @@
 
 Data sources and scripts for _Advancing into Analytics_ by George Mount
 
-To help you identify which datasets are needed, check the `dataset-tracker.xlsx`. You can find each dataset in the corresponding `datasets` folder.  
+Copies of the worked-through workbooks and scripts for each chapter are available in this main folder.
+
+Clean copies of the datasets used in the book along with descriptions and citations can be found in subfolders of the `datasets` folder.
