@@ -1,6 +1,6 @@
 # _Advancing into Analytics_
 
-Data sources and scripts for _Advancing into Analytics_ by George Mount
+Data sources and scripts for _Advancing into Analytics: From Excel to R and Python_ by George Mount (O'Reilly, 2021).
 
 Copies of the worked-through workbooks and scripts for each chapter are available in this main folder.
 
