@@ -6,37 +6,37 @@ library(tidymodels)
 
 head(ais)
 
-# rcc by male versus female
-ggplot(data=ais, aes(x=sex, y=rcc))+
+# 1. Visualize rcc by sex
+ggplot(data = ais, aes(x = sex, y = rcc))+
   geom_boxplot()
 
 
-ggplot(data=ais, aes(x=rcc))+
+ggplot(data = ais, aes(x = rcc))+
          geom_histogram()+
          facet_grid(~ sex)
 
-
+# 2. Significant difference in red blood cell count?
 t.test(rcc ~ sex, data=ais)
 # Yes, there is a significant difference in red blood cell counts
 
-# Correlation 
+# 3. Correlation matrix of relevant variables: 
 ais %>% 
   select(-c(sex, sport)) %>% 
   cor()
 
-# Lots of these; you may 
+# Lots of these to plot; you may 
 # want to pick just the ones of interest
 ais %>% 
   select(-c(sex, sport)) %>% 
   pairs()
 
 
-# Height and weight scatterplot
+# 4. Visualize relationship of height on weight: 
 ggplot(data = ais, aes(x = ht,y = wt))+
   geom_point()
 
 
-# Linear regression
+# 5. Linear regression of height on weight: 
 ais_reg <- lm(wt ~ ht, data = ais)
 summary(ais_reg)
 
@@ -49,7 +49,7 @@ ggplot(data = ais, aes(x = ht,y = wt))+
   geom_smooth(method = lm)
 
 
-# Split the data
+# 5. Split the dataset and validat model
 set.seed(1234)
 ais_split <- initial_split(ais)
 ais_train <- training(ais_split)

@@ -7,7 +7,7 @@ my_strings[c(1,4)]
 # 1a. more exotic way ;)
 my_strings[c(sqrt(1), 2^2)]
 
-# Create two vectors x and y of length 4; 
+# 2. Create two vectors x and y of length 4; 
 # one containing numeric and the other logical values. 
 # Multiply them and pass the result to z. What is
 # the result?
@@ -40,6 +40,8 @@ summary(airports)
 # Find the tenth through twelfth rows and the 
 # fourth through seventh columns of this data frame. 
 # Write the results to a `.csv` file and an Excel workbook.
+
+data('weather')
 
 weather_subset <- weather[10:12, 4:7]
 
