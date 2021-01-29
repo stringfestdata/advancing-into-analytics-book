@@ -115,7 +115,9 @@ roster[2:3,]
 roster[, c(1,3)]
 
 
-roster$height_in
+roster$height
+
+is.vector(roster$height)
 
 # Write roster data frame to csv 
 write_csv(roster, 'output/roster-output.csv')
