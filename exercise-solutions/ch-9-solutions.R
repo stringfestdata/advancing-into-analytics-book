@@ -41,6 +41,7 @@ ais_reg <- lm(wt ~ ht, data = ais)
 summary(ais_reg)
 
 # Yes there is a significant influence. 
+# height = -126 + 1.11 * weight
 # About 61% of the variability in weight is explained by height. 
 
 # Bonus: visualize the regression
