@@ -47,7 +47,7 @@ ggplot(data = mpg,aes(x = origin,y = mpg)) +
 # Facet histogram
 ggplot(data = mpg,aes(x = mpg)) +
   geom_histogram()+
-  facet_grid(~ origin)
+  facet_wrap(~ origin)
 
 
 

@@ -49,7 +49,9 @@ head(star_grouped)
 summarize(star_grouped, avg_math = mean(tmathssk))
 
 
+
 ?summarise
+
 # Read in our data sets
 star <- read_excel('datasets/star/star.xlsx')
 head(star)
@@ -71,7 +73,7 @@ star_avg_reading_sorted
 # by class type, sorted high to low 
 
 star %>% 
-  group_by(classk) %>% 
+  group_by(classk) %>%
   summarise(avg_reading = mean(treadssk)) %>% 
   arrange(desc(avg_reading))
 

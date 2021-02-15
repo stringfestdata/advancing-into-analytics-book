@@ -13,7 +13,7 @@ ggplot(data = ais, aes(x = sex, y = rcc))+
 
 ggplot(data = ais, aes(x = rcc))+
          geom_histogram()+
-         facet_grid(~ sex)
+         facet_wrap(~ sex)
 
 # 2. Significant difference in red blood cell count?
 t.test(rcc ~ sex, data=ais)
