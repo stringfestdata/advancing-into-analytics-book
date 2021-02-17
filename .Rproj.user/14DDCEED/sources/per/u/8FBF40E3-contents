@@ -1,8 +1,0 @@
-library(remotes)
-
-install_github("bayesball/ShinyBaseball")
-library(ShinyBaseball)
-BrushingZone()
-remove.packages('rlang')
-
-install.packages('shinythemes')
