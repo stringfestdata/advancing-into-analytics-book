@@ -1,0 +1,8 @@
+library(reticulate)
+reticulate::py_config()
+virtualenv_create("venv")
+virtualenv_root()
+use_virtualenv("venv")
+
+
+virtualenv_install(“modern_data”, “pandas”)
