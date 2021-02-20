@@ -23,6 +23,9 @@ head(star)
 star <- mutate(star, new_column = tmathssk + treadssk)
 head(star)
 
+# Rename
+star <- rename(star, ttl_score = new_column)
+head(star)
 
 # Sort
 arrange(star, classk, treadssk)
