@@ -1,5 +1,3 @@
-
-
 # Import packages that we need
 library(tidyverse)
 library(psych)
@@ -8,7 +6,7 @@ library(tidymodels)
 
 # Read in the data, select only the columns we need
 mpg <- read_csv("datasets/mpg/mpg.csv") %>% 
-  select(mpg,weight,horsepower,origin,cylinders)
+  select(mpg, weight, horsepower, origin, cylinders)
 head(mpg)
 
 # Descriptive statistics
@@ -34,18 +32,18 @@ mpg %>%
 
 
 # Histogram
-ggplot(data = mpg,aes(x = mpg)) +
+ggplot(data = mpg, aes(x = mpg)) +
   geom_histogram()
 
 
 
 # Box plot
-ggplot(data = mpg,aes(x = origin,y = mpg)) +
+ggplot(data = mpg, aes(x = origin,y = mpg)) +
   geom_boxplot()
 
 
 # Facet histogram
-ggplot(data = mpg,aes(x = mpg)) +
+ggplot(data = mpg, aes(x = mpg)) +
   geom_histogram()+
   facet_wrap(~ origin)
 
@@ -55,7 +53,7 @@ ggplot(data = mpg,aes(x = mpg)) +
 # Is there a difference in mileage? 
 mpg_filtered <- filter(mpg, origin == 'USA' | origin == 'Europe')
 
-# Dependent variable ~ independent variable
+# Dependent variable ~ ("by") independent variable
 t.test(mpg ~ origin, data = mpg_filtered)
 
 
@@ -112,4 +110,5 @@ mpg_results <- predict(lm_fit, new_data = mpg_test) %>%
 mpg_results
 
 rsq(data = mpg_results, truth = mpg, estimate = .pred)
+
 rmse(data = mpg_results, truth = mpg, estimate = .pred)

@@ -6,13 +6,7 @@ star <- read_excel("datasets/star/star.xlsx")
 head(star)
 
 # Select given columns from star
-select(star, tmathssk,treadssk,schidkn)
-
-
-star_selected <- select(star, tmathssk,treadssk,schidkn)
-head(star_selected)
-
-
+select(star, tmathssk, treadssk, schidkn)
 
 
 select(star, -tmathssk, -treadssk, -schidkn)
@@ -25,19 +19,22 @@ select(star, -c(tmathssk, treadssk, schidkn))
 star <- select(star, tmathssk:totexpk)
 head(star)
 
-# Calculate total score, months of experience
-mutate(star, score_ttl = tmathssk+treadssk, months_exp = totexpk*12)
+# Calculate total score
+star <- mutate(star, new_column = tmathssk + treadssk)
+head(star)
 
-# Rename tmathssk and treadssk as 
-# math_score and reading_score, respectively 
-rename(star, math_score=tmathssk, reading_score=treadssk)
 
 # Sort
-arrange(star, classk)
+arrange(star, classk, treadssk)
+
+arrange(star, desc(classk), treadssk)
+
 
 # Filter
 filter(star, classk == 'small.class')
+
 filter(star, treadssk >= 500)
+
 filter(star, classk == 'small.class' & treadssk >= 500)
 
 
@@ -50,11 +47,10 @@ summarize(star_grouped, avg_math = mean(tmathssk))
 
 
 
-?summarise
-
 # Read in our data sets
 star <- read_excel('datasets/star/star.xlsx')
 head(star)
+
 districts <- read_csv('datasets/star/districts.csv')
 head(districts)
 
@@ -93,7 +89,7 @@ star_pivot <- star %>%
 
 
 
-star_long <- star %>% 
+star_long <- star_pivot %>% 
                 pivot_longer(cols = c(tmathssk, treadssk),
                              values_to = 'score', names_to = 'test_type')
 
@@ -109,16 +105,15 @@ distinct(star_long, test_type)
 
 star_wide <- star_long %>% 
                 pivot_wider(values_from = 'score', names_from = 'test_type') 
-
-
 head(star_wide)
 
 # Count plot
-ggplot(data=star,aes(x=classk))+
+ggplot(data = star,
+       aes(x = classk))+
   geom_bar()
 
 # Histogram
-ggplot(data=star,aes(x=treadssk))+
+ggplot(data = star,aes(x = treadssk))+
   geom_histogram()
 
 
@@ -128,7 +123,7 @@ ggplot(data = star, aes(x = treadssk))+
 
 
 # Boxplot
-ggplot(data=star,aes(x=treadssk))+
+ggplot(data = star,aes(x = treadssk))+
   geom_boxplot()
 
 
@@ -143,7 +138,7 @@ ggplot(data = star, aes(x = classk,y = treadssk))+
   geom_boxplot()
 
 # Scatterplot
-ggplot(data=star,aes(x=tmathssk,y=treadssk))+
+ggplot(data=star,aes(x = tmathssk,y = treadssk))+
   geom_point()
 
 # Scatterplot with custom axis labels and title
