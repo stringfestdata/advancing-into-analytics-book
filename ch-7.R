@@ -1,18 +1,14 @@
-# For summary statistics
-library(psych)
+# For importing and exploring data
+library(tidyverse)
 
 # For reading in Excel files
 library(readxl)
 
-
-# For importing and exploring data
-library(tidyverse)
+# For summary statistics
+library(psych)
 
 # For writing data to Excel
 library(writexl)
-
-my_number <- 8.2
-sqrt(my_number)
 
 my_number <- 8.2
 sqrt(my_number)
@@ -28,9 +24,9 @@ my_numbers <- c(5, 8, 2, 7)
 
 is.vector(my_numbers)
 str(my_numbers)
+length(my_numbers)
 
 sqrt(my_numbers)
-
 
 roster_names <- c('Jack', 'Jill', 'Billy', 'Susie', 'Johnny')
 toupper(roster_names)
@@ -80,17 +76,18 @@ file.exists('test-file.csv')
 
 file.exists('test-folder/test-file.csv')
 
+# This is only TRUE if you've placed the file one
+# up from current folder location
 file.exists('../test-file.csv')
 
 read_csv('datasets/star/districts.csv')
 
-
 districts <- read_csv("datasets/star/districts.csv")
-
 districts
 
 
 star <- read_xlsx("datasets/star/star.xlsx")
+head(star)
 
 View(star)
 
@@ -125,34 +122,3 @@ write_csv(roster, 'output/roster-output.csv')
 
 # Write roster data frame to csv 
 write_xlsx(roster, 'output/roster-output.xlsx')
-
-
-
-
-
-
-
-
-
-
-
-
-
-head(star)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
