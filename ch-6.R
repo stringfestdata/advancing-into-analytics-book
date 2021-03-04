@@ -72,15 +72,13 @@ my_num <- my_num/my_other_num
 my_num
 
 
-install.packages('tidyverse')
+#install.packages('tidyverse')
 
 ?arrange
 
-arrange(mtcars, cyl, disp)
-
 library(tidyverse)
 
-?arrange(mtcars, cyl, disp)
+?arrange
 
 update.packages()
 
@@ -88,18 +86,5 @@ update.packages()
 install.packages('installr')
 library(installr)
 updateR()
-
-install.packages('devtools') 
-library(devtools) 
-install_github('andreacirilloac/updateR') 
-library(updateR) 
-updateR(admin_password = 'Admin user password') 
-
-
-
-
-
-
-
 
 

@@ -34,6 +34,8 @@ toupper(roster_names)
 my_vec <- c('A', 2, 'C')
 my_vec
 
+str(my_vec)
+
 # Get third element of roster_names vector
 roster_names[3]
 
@@ -117,8 +119,8 @@ roster$height
 is.vector(roster$height)
 
 # Write roster data frame to csv 
-write_csv(roster, 'output/roster-output.csv')
+write_csv(roster, 'output/roster-output-r.csv')
 
 
 # Write roster data frame to csv 
-write_xlsx(roster, 'output/roster-output.xlsx')
+write_xlsx(roster, 'output/roster-output-r.xlsx')
