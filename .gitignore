@@ -12,3 +12,5 @@ extras/~$linear-regression-hypothesis-testing.xlsx
 .Rproj.user/14DDCEED/sources/prop/AAA6C876
 .Rproj.user/14DDCEED/sources/prop/D458C52B
 .Rproj.user/14DDCEED/sources/prop/53E75760
+*.pper
+.Rhistory
