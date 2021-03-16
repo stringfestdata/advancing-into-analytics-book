@@ -145,7 +145,7 @@ ggplot(data=star,aes(x = tmathssk,y = treadssk))+
   geom_point()
 
 # Scatterplot with custom axis labels and title
-ggplot(data=star,aes(x=tmathssk,y=treadssk))+
+ggplot(data = star, aes(x = tmathssk, y = treadssk))+
   geom_point() + 
   xlab('Math score') + ylab('Reading score')+
   ggtitle('Math score versus reading score')
