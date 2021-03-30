@@ -2,7 +2,7 @@
 
 ![](Rplot.png)
 
-![](Countplot.png)
+![](countplot.png)
 
 ![Cover image](cover.jpg)
 
