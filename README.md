@@ -1,5 +1,9 @@
 # _Advancing into Analytics_
 
+![](Rplot.png)
+
+![](Countplot.png)
+
 ![Cover image](cover.jpg)
 
 ## This repo along with the book is not finalized and still in production; proceed with caution. 
