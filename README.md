@@ -1,8 +1,5 @@
 # _Advancing into Analytics_
 
-![](Rplot.png)
-
-![](countplot.png)
 
 ![Cover image](cover.jpg)
 
