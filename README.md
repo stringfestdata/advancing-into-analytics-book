@@ -1,7 +1,8 @@
 # _Advancing into Analytics_
 
 
-<img>src='cover.jpg' width=50%</img>
+
+<img src="cover.jpg" width="400">
 
 
 Data sources and scripts for _Advancing into Analytics: From Excel to R and Python_ by George Mount (O'Reilly, 2021).
