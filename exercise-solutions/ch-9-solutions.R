@@ -67,7 +67,7 @@ lm_spec <- linear_reg()
 
 # Fit the model to the data 
 lm_fit <- lm_spec %>%
-  fit(ht ~ wt, data = ais)
+  fit(wt ~ ht, data = ais)
 
 ais_pred <- lm_fit %>% 
   predict(new_data = ais_test) %>% 
