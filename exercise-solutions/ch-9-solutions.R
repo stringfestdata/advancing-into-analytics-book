@@ -32,20 +32,20 @@ ais %>%
 
 
 # 4. Visualize relationship of height on weight: 
-ggplot(data = ais, aes(x = ht,y = wt))+
+ggplot(data = ais, aes(x = wt, y = ht))+
   geom_point()
 
 
 # 5. Linear regression of height on weight: 
-ais_reg <- lm(wt ~ ht, data = ais)
+ais_reg <- lm(ht ~ wt, data = ais)
 summary(ais_reg)
 
 # Yes there is a significant influence. 
-# height = -126 + 1.11 * weight
-# About 61% of the variability in weight is explained by height. 
+# height = 139.16 + .55 * weight
+# About 61% of the variability in height is explained by weight. 
 
 # Bonus: visualize the regression
-ggplot(data = ais, aes(x = ht,y = wt))+
+ggplot(data = ais, aes(x = wt, y = ht))+
   geom_point()+
   geom_smooth(method = lm)
 
@@ -67,7 +67,7 @@ lm_spec <- linear_reg()
 
 # Fit the model to the data 
 lm_fit <- lm_spec %>%
-  fit(wt ~ ht, data = ais_train)
+  fit(ht ~ wt, data = ais_train)
 
 ais_pred <- lm_fit %>% 
   predict(new_data = ais_test) %>% 
@@ -79,3 +79,4 @@ rsq(data = ais_pred, truth = ht, estimate = .pred)
 
 # Find rmse
 rmse(data = ais_pred, truth = ht, estimate = .pred)
+
